@@ -7,8 +7,10 @@ import {
     Scripts,
     ScrollRestoration,
 } from "@remix-run/react";
+import Footer from "./components/Footer";
+import Navbar from "./components/Navbar";
 
-import styles from "./styles/app.css"
+import styles from "./styles/app.css";
 
 export const meta: MetaFunction = () => ({
     charset: "utf-8",
@@ -16,9 +18,19 @@ export const meta: MetaFunction = () => ({
     viewport: "width=device-width,initial-scale=1",
 });
 
-export function links() {
+export const links = () => {
     return [{ rel: "stylesheet", href: styles }];
-}
+};
+
+const Layout = () => (
+    <>
+        <Navbar />
+        <main className="flex items-center justify-center h-screen flex-col">
+            <Outlet />
+        </main>
+        <Footer />
+    </>
+);
 
 export default function App() {
     return (
@@ -28,7 +40,7 @@ export default function App() {
                 <Links />
             </head>
             <body>
-                <Outlet />
+                <Layout />
                 <ScrollRestoration />
                 <Scripts />
                 <LiveReload />
