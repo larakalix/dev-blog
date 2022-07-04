@@ -1,4 +1,4 @@
-import type { MetaFunction } from "@remix-run/node";
+import type { MetaFunction, LinksFunction } from "@remix-run/node";
 import {
     Links,
     LiveReload,
@@ -10,7 +10,7 @@ import {
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 
-import styles from "./styles/app.css";
+import styles from "~/styles/app.css";
 
 export const meta: MetaFunction = () => ({
     charset: "utf-8",
@@ -18,14 +18,12 @@ export const meta: MetaFunction = () => ({
     viewport: "width=device-width,initial-scale=1",
 });
 
-export const links = () => {
-    return [{ rel: "stylesheet", href: styles }];
-};
+export const links: LinksFunction = () => [{ rel: "stylesheet", href: styles }];
 
 const Layout = () => (
     <>
         <Navbar />
-        <main className="flex items-center justify-center h-screen flex-col">
+        <main className="flex items-center justify-center m-h-screen flex-col">
             <Outlet />
         </main>
         <Footer />
@@ -39,7 +37,7 @@ export default function App() {
                 <Meta />
                 <Links />
             </head>
-            <body>
+            <body className="bg-black text-white">
                 <Layout />
                 <ScrollRestoration />
                 <Scripts />

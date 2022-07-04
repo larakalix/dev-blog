@@ -1,0 +1,8 @@
+.bg-single-post {
+    background: linear-gradient(180deg, #000 0, transparent 100%),
+        linear-gradient(
+            90deg,
+            rgb(var(--gradient-from, 85 85 85) / 0.2) 0,
+            rgb(var(--gradient-to, 85 85 85) / 0.2) 100%
+        );
+}

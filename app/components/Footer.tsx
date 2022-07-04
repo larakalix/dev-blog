@@ -1,8 +1,8 @@
 export default function Footer() {
     return (
-        <footer className="flex items-center justify-center flex-col py-8 bg-gray-100">
-            <span>Copyright &copy; {new Date().getFullYear()}</span>
-            <p>
+        <footer className="flex items-center justify-center flex-col py-8 bg-v-bullet text-white pt-8">
+            <span className="text-v-small font-light text-v-gray">
+                Copyright &copy; {new Date().getFullYear()}.{" "}
                 <a
                     href="https://www.kalixthedev.com/"
                     target={"_blank"}
@@ -10,7 +10,7 @@ export default function Footer() {
                 >
                     kalixthedev
                 </a>
-            </p>
+            </span>
         </footer>
     );
 }
