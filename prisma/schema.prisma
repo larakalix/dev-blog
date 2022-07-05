@@ -7,8 +7,9 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = "file:./dev.db"
+  provider             = "mysql"
+  url                  = env("DATABASE_URL")
+  referentialIntegrity = "prisma"
 }
 
 model Post {
@@ -20,16 +21,16 @@ model Post {
   published  Boolean
   authors    Author[]
   categories Category[]
-  // type       PostType
+  type       PostType
 
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
 }
 
-// enum PostType {
-//   POST
-//   PAGE
-// }
+enum PostType {
+  POST
+  PAGE
+}
 
 model Author {
   id        String @id @default(cuid())
