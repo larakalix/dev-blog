@@ -1,16 +1,21 @@
 import type { Post } from "~/models/posts";
-import type { LoaderFunction } from "@remix-run/node";
+import type { ErrorBoundaryComponent, LoaderFunction } from "@remix-run/node";
 import type { Category } from "@prisma/client";
 import { Link, useLoaderData } from "@remix-run/react";
 import { db } from "~/services/db";
 import MainHeader from "~/components/MainHeader";
 import { StackPost } from "~/components/post";
+import { ErrorMessage } from "~/components/errors";
 
 export const loader: LoaderFunction = async () => {
     const categories = await db.category.findMany();
     const posts = await db.post.findMany();
 
     return { categories, posts };
+};
+
+export const ErrorBoundary: ErrorBoundaryComponent = ({ error }) => {
+    return <ErrorMessage error={error} />;
 };
 
 // const AllPosts = ({ posts }: { posts: Post[] }) => (
