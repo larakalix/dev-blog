@@ -8,10 +8,14 @@ import { StackPost } from "~/components/post";
 import { ErrorMessage } from "~/components/errors";
 
 export const loader: LoaderFunction = async () => {
-    const categories = await db.category.findMany();
-    const posts = await db.post.findMany();
+    const posts = await db.post.findMany({
+        include: {
+            categories: true,
+            authors: true,
+        },
+    });
 
-    return { categories, posts };
+    return { posts };
 };
 
 export const ErrorBoundary: ErrorBoundaryComponent = ({ error }) => {
@@ -46,16 +50,9 @@ const LatestPosts = ({ posts }: { posts: Post[] }) => (
 );
 
 export default function Index() {
-    const { categories, posts } = useLoaderData();
+    const { posts } = useLoaderData();
     return (
         <>
-            <ul className="flex items-center justify-center space-x-4">
-                {categories.map(({ id, slug, name }: Category) => (
-                    <li key={id} className="p-4">
-                        <Link to={`posts/category/${slug}`}>{name}</Link>
-                    </li>
-                ))}
-            </ul>
             {/* <AllPosts posts={posts} /> */}
             <LatestPosts posts={posts} />
         </>

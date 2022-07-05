@@ -1,10 +1,13 @@
+import type { Category } from "@prisma/client";
 import type { Post } from "~/models/posts";
 
 export const PostHeader = ({ post }: { post: Post }) => (
     <div className="w-full pt-20 pb-24 px-6 bg-single-post">
         <div>
             <div className="bg-bullet inline py-2 px-3 rounded-3xl font-light whitespace-nowrap text-v-small">
-                {post.category}
+                {post.categories
+                    .map((category: Category) => category.name)
+                    .join(", ")}
             </div>
             <span className="text-v-small text-v-gray font-light ml-3">
                 {new Date(post.createdAt).toDateString()}

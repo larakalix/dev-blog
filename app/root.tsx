@@ -1,4 +1,8 @@
-import type { MetaFunction, LinksFunction } from "@remix-run/node";
+import type {
+    MetaFunction,
+    LinksFunction,
+    LoaderFunction,
+} from "@remix-run/node";
 import {
     Links,
     LiveReload,
@@ -6,11 +10,13 @@ import {
     Outlet,
     Scripts,
     ScrollRestoration,
+    useLoaderData,
 } from "@remix-run/react";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 
 import styles from "~/styles/app.css";
+import { db } from "./services/db";
 
 export const meta: MetaFunction = () => ({
     charset: "utf-8",
@@ -20,17 +26,14 @@ export const meta: MetaFunction = () => ({
 
 export const links: LinksFunction = () => [{ rel: "stylesheet", href: styles }];
 
-const Layout = () => (
-    <>
-        <Navbar />
-        <main className="flex items-center justify-center m-h-screen flex-col">
-            <Outlet />
-        </main>
-        <Footer />
-    </>
-);
+export const loader: LoaderFunction = async () => {
+    const categories = await db.category.findMany();
+
+    return { categories };
+};
 
 export default function App() {
+    const { categories } = useLoaderData();
     return (
         <html lang="en">
             <head>
@@ -38,7 +41,11 @@ export default function App() {
                 <Links />
             </head>
             <body className="bg-black text-white">
-                <Layout />
+                <Navbar categories={categories} />
+                <main className="flex items-center justify-center m-h-screen flex-col">
+                    <Outlet />
+                </main>
+                <Footer />
                 <ScrollRestoration />
                 <Scripts />
                 <LiveReload />
