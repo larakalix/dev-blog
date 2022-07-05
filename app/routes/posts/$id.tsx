@@ -11,6 +11,7 @@ export const loader: LoaderFunction = async ({ params }) => {
         },
         include: {
             authors: true,
+            categories: true,
         },
     });
 
