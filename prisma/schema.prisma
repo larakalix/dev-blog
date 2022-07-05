@@ -7,7 +7,7 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
@@ -20,16 +20,16 @@ model Post {
   published  Boolean
   authors    Author[]
   categories Category[]
-  type       PostType
+  // type       PostType
 
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
 }
 
-enum PostType {
-  POST
-  PAGE
-}
+// enum PostType {
+//   POST
+//   PAGE
+// }
 
 model Author {
   id        String @id @default(cuid())
