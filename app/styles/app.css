@@ -551,10 +551,6 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
-.static {
-  position: static;
-}
-
 .my-4 {
   margin-top: 1rem;
   margin-bottom: 1rem;
