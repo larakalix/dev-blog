@@ -9,7 +9,12 @@ import { ErrorMessage } from "~/components/errors";
 
 export const loader: LoaderFunction = async () => {
     const categories = await db.category.findMany();
-    const posts = await db.post.findMany();
+    const posts = await db.post.findMany({
+        include: {
+            categories: true,
+            authors: true,
+        },
+    });
 
     return { categories, posts };
 };
