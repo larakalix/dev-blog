@@ -12,7 +12,7 @@ export const StackPost = ({ post }: { post: Post }) => {
                     <p className="text-v-gray font-light text-v-small">
                         {new Date(post.createdAt).toDateString()}
                     </p>
-                    <p className="bg-v-bullet text-v-gray font-extralight text-[0.75rem] px-3 py-[10px] rounded-[32px]">
+                    <p className="bg-v-bullet text-v-gray font-light text-[0.75rem] px-3 py-[10px] rounded-[32px]">
                         {post.category}
                     </p>
                 </div>

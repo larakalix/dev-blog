@@ -25,7 +25,7 @@ export const PostContent = ({ post }: { post: Post }) => {
                 </p>
             </div>
             <div className="w-1/4 p-10 pt-20 border-l border-l-v-border h-full min-h-full">
-                <span className="text-v-small text-v-gray font-extralight">
+                <span className="text-v-small text-v-gray font-light">
                     Posted by
                     {post.authors?.length > 0 &&
                         post.authors.map((author) => (

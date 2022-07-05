@@ -14,7 +14,7 @@ export default function Navbar() {
                         <Link
                             to={href}
                             draggable={false}
-                            className="cursor-default select-none font-extralight text-v-small"
+                            className="cursor-default select-none font-light text-v-small"
                         >
                             {text}
                         </Link>

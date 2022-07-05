@@ -10,14 +10,14 @@ export const AuthorBadge = ({ author }: { author: Author }) => {
                 alt={author.name}
             />
             <div className="flex flex-col items-start flex-shrink-0 leading-4">
-                <span className="text-v-small text-white font-extralight">
+                <span className="text-v-small text-white font-light">
                     {author.name}
                 </span>
                 <a
                     href={`https://twitter.com/${author.username}`}
                     target={"_blank"}
                     rel="noreferrer"
-                    className="text-v-small font-extralight"
+                    className="text-v-small font-light"
                 >
                     @{author.username}
                 </a>
