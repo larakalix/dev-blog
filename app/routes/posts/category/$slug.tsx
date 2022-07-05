@@ -9,7 +9,15 @@ import { StackPost } from "~/components/post";
 export const loader: LoaderFunction = async ({ params }) => {
     const category = await db.category.findUnique({
         where: { slug: params.slug },
-        include: { posts: true },
+        select: {
+            name: true,
+            posts: {
+                include: {
+                    authors: true,
+                    categories: true,
+                },
+            },
+        },
     });
 
     return { category };
@@ -21,8 +29,6 @@ export const ErrorBoundary: ErrorBoundaryComponent = ({ error }) => {
 
 export default function PostCategory() {
     const { category } = useLoaderData();
-
-    console.log(category);
 
     return (
         <div className="w-4/5 mt-12 mb-8">
